@@ -18,3 +18,17 @@ int Fraction::getSign() const
 {
     return sign;
 }
+
+void Fraction::reduce()
+{
+    int gcd = getGCD(nominator, denominator);
+    nominator /= gcd;
+    denominator /= gcd;
+}
+
+int Fraction::getGCD(int nominator, int denominator)
+{
+    if (denominator == 0)
+        return nominator;
+    return getGCD(denominator, nominator % denominator);
+}

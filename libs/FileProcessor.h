@@ -8,16 +8,15 @@
 
 class FileProcessor {
 private:
-    std::string inputFileName;
-    std::string outputFileName;
-    std::string fileContent;
-    void fileExists(std::string fileName);
+    int coefficentCount;
+    int constrainCount;
+    std::string fileName;
+    std::string filePath;
+    std::string *fileContent;
 
 public:
-    FileProcessor();
+    void fileImport();
 
-    void readFile(const char *fileName);
-    void writeFile(const char *fileName);
 };
 
 #endif // SIMPLEXSOLVER_FILEPROCESSOR_H

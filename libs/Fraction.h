@@ -12,7 +12,7 @@ private:
     int nominator;
     int denominator;
     int sign;
-
+    void reduce();
 public:
     int getDenominator() const;
     int getNumerator() const;
@@ -20,6 +20,7 @@ public:
 
 
 
+    int getGCD(int nominator, int denominator);
 };
 
 
