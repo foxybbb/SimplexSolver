@@ -30,50 +30,70 @@ void FileProcessor::fileImport()
     }
 
     coefficentCount = 0;
-    for(char &c : lines[0])
+    for (char &c: lines[0])
     {
-        if(std::isdigit(c))
+        if (std::isdigit(c))
         {
-             coefficentCount++;
+            coefficentCount++;
         }
     }
 
     constrainCount = lineCount - 4;
 
-    std:std::vector<double> functionCoefficients;
-    std::vector<std::vector<double>> constraintsCoefficients;
+    std:
+    std::vector<double> functionCoefficients;
+
+    // std::vector<std::vector<double>> constraintsCoefficients;
     std::vector<double> constraintsEqualities;
 
-    for(char &c : lines[0])
+    for (char &c: lines[0])
     {
-        if(std::isdigit(c))
+        if (std::isdigit(c))
         {
             functionCoefficients.push_back(std::stod(std::string(1, c)));
         }
     }
 
-    for(int constrainRow = 2; constrainRow <= constrainCount+2; constrainRow++)
+    coefficentCount = functionCoefficients.size();
+    std::vector<std::vector<double>> constraintsCoefficents(constrainCount, std::vector<double>(coefficentCount));
+
+
+
+
+    for (unsigned int i = 0; i < constrainCount; i++)
     {
-        for(char &c : lines[constrainRow])
+        for (unsigned int j = 0; j < coefficentCount; j++)
         {
-            if(std::isdigit(c))
+            char lastChar;
+            for(char &c: lines[i + 2])
             {
-                constraintsCoefficients[constrainRow-1].push_back(std::stod(std::string(1, c)));
+
+                if (std::isdigit(c) && lastChar == '-')
+                {
+                    constraintsCoefficents[i][j] = std::stod('-'+std::string(1, c));
+                    j++;
+                }else if(std::isdigit(c))
+                {
+                    constraintsCoefficents[i][j] = std::stod(std::string(1, c));
+                    j++;
+                }
+
+
+                lastChar = c;
             }
+
         }
     }
 
 
-    for(char &c : lines[lineCount])
+    for (char &c: lines[lineCount-1])
     {
-        if(std::isdigit(c))
+        if (std::isdigit(c))
         {
             constraintsEqualities.push_back(std::stod(std::string(1, c)));
         }
     }
 
-    // convert string to number array
-    file.close();
 
 
 }
