@@ -5,7 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-    FileProcessor fileProcessor;
-    fileProcessor.fileImport();
+    FileProcessor fp;
+    SolverTable solver;
+    solver.extractDataFromString(fp.getFileContent( "C:\\Users\\IvanEarth\\Desktop\\input0.txt"));
 
 }

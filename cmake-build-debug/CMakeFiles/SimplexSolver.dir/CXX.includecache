@@ -6,25 +6,11 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/FileProcessor.cpp
-FileProcessor.h
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/FileProcessor.h
-fstream
--
-iostream
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/iostream
-
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/FileProcessor.h
 string
 -
-
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/Fraction.cpp
-Fraction.h
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/Fraction.h
-
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/Fraction.h
-cmath
--
+vector
+C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/vector
 
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/Includes.h
 debugClass.h
@@ -35,20 +21,20 @@ FileProcessor.h
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/FileProcessor.h
 
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/SolverTable.cpp
+iostream
+-
 SolverTable.h
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/SolverTable.h
-vector
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/vector
 
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/SolverTable.h
+vector
+-
+string
+C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/string
 
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/debugClass.h
 
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/main.cpp
-iostream
--
 libs/Includes.h
 C:/Users/IvanEarth/CLionProjects/SimplexSolver/libs/Includes.h
-string
--
 

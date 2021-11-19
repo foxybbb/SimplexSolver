@@ -2,20 +2,22 @@
 // Created by IvanEarth on 14.11.2021.
 //
 # include <string>
+#include "vector"
+
 #ifndef SIMPLEXSOLVER_FILEPROCESSOR_H
 #define SIMPLEXSOLVER_FILEPROCESSOR_H
 
 
-class FileProcessor {
+class FileProcessor
+{
 private:
-    int coefficentCount;
-    int constrainCount;
+
     std::string fileName;
     std::string filePath;
     std::string *fileContent;
 
 public:
-    void fileImport();
+    std::vector<std::string> getFileContent(const std::string &fileName);
 
 };
 
