@@ -1,6 +1,6 @@
 # SimplexSolver
 <p align="center">
-  <img src="https://repository-images.githubusercontent.com/427957827/d0fc2e08-3d7f-47fa-9b5f-ae4f0b06f99b" alt="Logo" width="738">
+  <img src="https://repository-images.githubusercontent.com/427957827/d0fc2e08-3d7f-47fa-9b5f-ae4f0b06f99b" alt="Logo" width="300">
 </p>
 ## Program
 This console application contains an implementation of the Simplex method, a linear programming algorithm. Simple standard C++ libraries were used for the program.
