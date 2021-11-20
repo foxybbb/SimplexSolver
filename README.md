@@ -13,7 +13,7 @@ The language chosen to implement the algorithm is C++. Because it is a simple an
 To run the application, you need to enter arguments when you start the programme. This can be done using the command line.
 Argument format:
 ```sh
-start SimplexSolve.exe <inputfile> <outputfile>
+SimplexSolve.exe <inputfile> <outputfile>
 ```
 
 ## Bugs/Errors
