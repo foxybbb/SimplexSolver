@@ -1,3 +1,0 @@
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/cmake-build-debug/CMakeFiles/SimplexSolver.dir
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/IvanEarth/CLionProjects/SimplexSolver/cmake-build-debug/CMakeFiles/rebuild_cache.dir
