@@ -5,8 +5,6 @@
 #ifndef SIMPLEXSOLVER_INCLUDES_H
 #define SIMPLEXSOLVER_INCLUDES_H
 
-#include "debugClass.h"
-#include "SolverTable.h"
 #include "FileProcessor.h"
 
 
