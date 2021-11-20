@@ -3,4 +3,4 @@ project(SimplexSolver)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(SimplexSolver main.cpp libs/SolverTable.cpp libs/SolverTable.h libs/Includes.h libs/debugClass.cpp libs/debugClass.h libs/FileProcessor.cpp libs/FileProcessor.h libs/Logger/FileLogger.cpp libs/Logger/FileLogger.h libs/Logger/ConsoleLogger.cpp libs/Logger/ConsoleLogger.h libs/Fraction.cpp libs/Fraction.h)
+add_executable(SimplexSolver main.cpp libs/SolverTable.cpp libs/SolverTable.h libs/Includes.h libs/FileProcessor.cpp libs/FileProcessor.h libs/Fraction.cpp libs/Fraction.h libs/Solver/Solver.cpp libs/Solver/Solver.h)

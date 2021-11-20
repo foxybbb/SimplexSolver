@@ -4,9 +4,23 @@
 
 #include "Solver.h"
 #include <iostream>
+#include <algorithm>
+#include <fstream>
 
-Solver::Solver(std::vector<std::vector<double>> matrix, std::vector<double> b, std::vector<double> c)
+Solver::Solver(std::vector<std::vector<double>> matrix, std::vector<double> &b, std::vector<double> &c)
 {
+    // умножение на -1 для правильного порядка вычислений
+    if (std::for_each(c.begin(), c.end(), [](double &x)
+    { x > 0; }))
+    {
+        for (int pos = 0; pos <= c.size() / 2; pos++)
+        {
+            c[pos] = (c[pos] * -1);
+        }
+
+    }
+
+
     _max_value = 0;
     _is_solved = false;
     set_row_count(matrix.size());
@@ -89,7 +103,6 @@ bool Solver::solve()
     convert_table(bazisRow, bazisColumn);
     if (_is_solved)
     {
-        row_print();
         return true;
     }
 
@@ -312,25 +325,22 @@ void Solver::calculate_simplex_table()
 {
     bool ready = false;
 
-    std::cout << "initial array(Not optimal)" << std::endl;
-    row_print();
+    std::cout << "Input Data Matrix: " << std::endl;
+    beautifulPrint();
+    std::cout << "Solved Matrix: " << std::endl;
+
     while (!ready)
     {
-
         bool result = solve();;
 
         if (result == true)
         {
-
             ready = true;
-
-
         }
 
     }
     //к каждому базовый столбецу получаем значение  из массива
-    printAnswerVariables();
-    printMaximumValues();
+
 }
 
 void Solver::printMaximumValues() const
@@ -357,16 +367,6 @@ void Solver::printAnswerVariables()
 
 
         }
-        if (count0 == _row_count - 1)
-        {
-
-            std::cout << "x" << index + 1 << ": " << objectiveFunctionCoefficients[index]
-                      << std::endl;
-        } else
-        {
-            std::cout << "x" << index + 1 << ": " << 0 << std::endl;
-
-        }
 
 
     }
@@ -384,5 +384,96 @@ void Solver::row_print()
     }
     std::cout << std::endl;
 }
+
+void Solver::parsing_simplex_table(const std::vector<std::string> &lines)
+{
+    int linesCount = lines.size();
+    int constrainCount = linesCount - 4;
+
+
+    int coefficentCount = functionCoefficients.size() - 1;
+
+
+}
+
+void Solver::beautifulPrint() const
+{
+    {
+        std::vector<std::vector<double>> table(functionCoefficients.size(),
+                                               std::vector<double>(functionCoefficients[0].size() + 1));
+
+        for (int row = 0; row < functionCoefficients.size(); row++)
+        {
+            for (int element = 0; element < functionCoefficients[0].size(); element++)
+            {
+                table[row][element] = functionCoefficients[row][element];
+            }
+            table[row][table[0].size() - 1] = objectiveFunctionCoefficients[row];
+        }
+        table.push_back(constantsCoefficients);
+        table[table.size() - 1][table[0].size() - 1] = _max_value;
+        std::cout << "\t";
+        bool header = true;
+        for (int row = 0; row < table.size(); row++)
+        {
+
+            if (header)
+            {
+                for (int x = 1; x <= _column_count / 2; x++)
+                {
+                    std::cout << "x" + std::to_string(x) << "\t";
+                }
+                for (int x = _column_count / 2; x <= _row_count * 2 - 1; x++)
+                {
+                    std::cout << "s" + std::to_string(x - _column_count / 2 + 1) << "\t";
+                }
+                std::cout << "b" << std::endl;
+                header = false;
+            } // вывод заголовка
+
+            if (row == table.size() - 1)
+            { //вывод названий строк
+                std::cout << "c" << "\t";
+            } else
+            {
+                std::cout << "s" + std::to_string(row + 1) << "\t";
+            }
+
+            for (int element = 0; element < table[0].size(); element++)  // вывод чисел
+            {
+                std::cout << table[row][element] << "\t";
+            }
+            std::cout << std::endl;
+
+        }
+    }
+}
+
+void Solver::saveReport(char *fileName)
+{
+    std::string fileContent;
+    beautifulPrint();
+
+    fileContent += "\nSOLUTION FOUND: unique solution\n";
+    fileContent += "Objective: z = " + std::to_string(_max_value) + "\n";
+    for (int pos = 0; pos < objectiveFunctionCoefficients.size() ; pos++)
+    {
+        fileContent += "x" + std::to_string(pos + 1) + ": "
+                       + std::to_string(objectiveFunctionCoefficients[pos]) + "\t";
+
+    }
+    for (int pos = 0; pos < objectiveFunctionCoefficients.size(); pos++)
+    {
+        fileContent += "s"+std::to_string(pos + 1)+": "+std::to_string(0) + "\t";
+
+    }
+    fileContent += '\n';
+
+    std::cout << fileContent << std::endl;
+
+}
+
+
+
 
 

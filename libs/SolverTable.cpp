@@ -84,8 +84,11 @@ void SolverTable::extractDataFromString(std::vector<std::string> stringArray)
     extendTable();
 }
 
-void SolverTable::extendTable()
+std::vector<std::vector<double>> SolverTable::extendTable()
 {
+
+
+
     std::vector<std::vector<double>> extendTable(constrainCount + 1, std::vector<double>(coefficentCount * 2 + 1));
 
     for (auto row = constraintsCoefficents.begin(); row != constraintsCoefficents.end(); row++)
@@ -98,7 +101,7 @@ void SolverTable::extendTable()
 
     for (int i = 0; i < coefficentCount; i++)
     {
-        extendTable[extendTable.size() - 1][i] = functionResult[i];
+        extendTable[extendTable.size() - 1][i] = functionCoefficients[i];
     }
 
     for (int row = 0; row < extendTable.size() - 2; row++)
@@ -114,11 +117,62 @@ void SolverTable::extendTable()
     {
         extendTable[row][extendTable[0].size() - 1] = functionResult[row];
     }
+
+
+    // максимальный по модулю отрицательный элемент
+    double max = 0;
+    int indexOfMaxElement = 0;
+
+
+    for (int i = 0; i < functionCoefficients.size(); i++)
+        if (functionCoefficients[i] < 0 && abs(functionCoefficients[i]) > max)
+        {
+            max = abs(functionCoefficients[i]);
+            indexOfMaxElement = i;
+        }
+
+
+    std::vector<double> temp;
+    for (int i = 0; i < constrainCount; i++)
+    {
+        temp.push_back(functionCoefficients[i] / extendTable[i][indexOfMaxElement]);
+
+    }
+
+    max = 0;
+    indexOfMaxElement = 0;
+
+    for (int i = 0; i < temp.size(); i++)
+        if (temp[i] < 0 && abs(temp[i]) > max)
+        {
+            max = abs(temp[i]);
+            indexOfMaxElement = i;
+        }
+
+    max = 0;
+        for(int i = 0; i < temp.size();i++){
+            if(temp[i]<0){
+                i++;
+            }
+            if(temp[i] > max){
+                max = std::abs(temp[i]);
+                indexOfMaxElement = i;
+            }
+        }
+
+
+
+
+
+
     std::endl(std::cout);
+
+
 
     beautifulPrint(extendTable);
 
 
+    return extendTable;
 }
 
 void SolverTable::beautifulPrint(std::vector<std::vector<double>> &table) const
@@ -169,13 +223,22 @@ void SolverTable::printAnswer(int &ans) const
             break;
         case 2:
             std::cout << "SOLUTION FOUND: unique solution" << std::endl << "Objective: " +
-            std::to_string(Z_value) << std::endl;
+                                                                           std::to_string(Z_value) << std::endl;
             break;
         case 3:
             std::cout << "SOLUTION FOUND: multiple solutions" << std::endl << "Objective: " +
-            std::to_string(Z_value) << std::endl;
+                                                                              std::to_string(Z_value) << std::endl;
             break;
+    }
+
 }
+
+
+
+
+
+
+
 
 
 

@@ -6,18 +6,22 @@
 #define SIMPLEXSOLVER_FRACTION_H
 
 #include <cmath>
+
 class Fraction
 {
 private:
     int nominator;
     int denominator;
     int sign;
+
     void reduce();
+
 public:
     int getDenominator() const;
-    int getNumerator() const;
-    int getSign() const;
 
+    int getNumerator() const;
+
+    int getSign() const;
 
 
     int getGCD(int nominator, int denominator);
