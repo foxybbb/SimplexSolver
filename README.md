@@ -2,6 +2,8 @@
 ## Program
 This console application contains an implementation of the Simplex method, a linear programming algorithm. Simple standard C++ libraries were used for the program.
 This program was written for a university assignment. Therefore, what it can do is read a file in a certain format and do the output to another file.
+## Why c++
+The language chosen to implement the algorithm is C++. Because it is a simple and, most importantly, fast language. I think it is abnormal to create algorithms in highly abstracted languages, as it takes a lot of PC resources.
 
 ## Run
 To run the application, you need to enter arguments when you start the programme. This can be done using the command line.
