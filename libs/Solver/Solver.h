@@ -4,6 +4,7 @@
 
 #ifndef SIMPLEXSOLVER_SOLVER_H
 #define SIMPLEXSOLVER_SOLVER_H
+
 #include <string>
 #include <vector>
 
@@ -13,25 +14,39 @@ private:
     bool _is_solved;
     double _max_value;
 
+
     int _row_count;
     int _column_count;
     std::vector<std::vector<double>> functionCoefficients;
     std::vector<double> constantsCoefficients;
     std::vector<double> objectiveFunctionCoefficients;
+
     bool check_optimality();
+
     int get_bazis_column();
+
     int get_bazis_row(int bazisColumn);
+
     void row_print();
+
 public:
-    Solver(std::vector<std::vector<double>> matrix, std::vector<double> b, std::vector<double> c);
+    void beautifulPrint() const;
+
+    Solver(std::vector<std::vector<double>> matrix, std::vector<double> &b, std::vector<double> &c);
 
     void set_row_count(int row_count);
+
     void set_column_count(int column_count);
+
     void fill_2D_Matrix(std::vector<std::vector<double>> &matrix);
+
     void fill_1D_Matrix(std::vector<double> &inputMatrix, std::vector<double> &outputMatrix);
+
     bool solve();
+
     void calculate_simplex_table();
 
+    void parsing_simplex_table(const std::vector<std::string> &lines);
 
     void convert_table(int row, int column);
 
@@ -58,6 +73,8 @@ public:
     void printAnswerVariables();
 
     void printMaximumValues() const;
+
+    void saveReport(char *fileName);
 };
 
 

@@ -50,7 +50,7 @@ std::vector<double> FileProcessor::extractMatrixforB(std::vector<std::string> li
     char last_char;
     for (int pos = 0; pos < lines[lines.size() - 1].size(); pos++)
     {
-        char current_char = lines[0][pos];
+        char current_char = lines[lines.size() - 1][pos];
         if (last_char == '-' && std::isdigit(current_char))
         {
             coefficients.push_back(std::stod('-' + std::string(1, current_char)));
@@ -98,9 +98,11 @@ std::vector<double> FileProcessor::extractMatrixforC(std::vector<std::string> li
 
 std::vector<std::vector<double>> FileProcessor::extractMatrixforA(std::vector<std::string> lines, int coefficentCount)
 {
-    int constrainCount = lines.size() - 4;
 
-    std::vector<std::vector<double>> coefficients(constrainCount, std::vector<double>(coefficentCount));
+    int constrainCount = lines.size() - 4;
+    int iteration;
+    std::vector<std::vector<double>> coefficients(constrainCount, std::vector<double>(coefficentCount * 2));
+
     for (unsigned int i = 0; i < constrainCount; i++)
     {
         for (unsigned int j = 0; j < coefficentCount; j++)
@@ -124,12 +126,17 @@ std::vector<std::vector<double>> FileProcessor::extractMatrixforA(std::vector<st
             }
 
         }
-        for(int pos = 0; pos < coefficentCount; pos++)
-        {
-           coefficients[pos].push_back(1);
-        }
-
     }
+    for (int i = 0; i < constrainCount; i++)
+    {
+        for (int j = coefficentCount; j < coefficentCount * 2; j++)
+        {
+            coefficients[i][j] = 1;
+            i++;
+        }
+    }
+
+
     return coefficients;
 }
 
